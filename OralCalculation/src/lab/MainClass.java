@@ -132,7 +132,13 @@ public class MainClass {
 			System.out.println("please input valid grade!");
 		}
 		int output = (int) score;
-		System.out.println(output);
+		if(output == 100) {
+			System.out.println("end! All right, that's great! Your score is 100.");
+		}
+		else {
+			System.out.println("end! Wrong question, your score is "+output+".");
+		}
+		
 	}
 	}
 

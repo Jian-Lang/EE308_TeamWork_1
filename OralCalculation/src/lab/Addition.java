@@ -24,5 +24,4 @@ public class Addition {
         System.out.println(a+"+"+b+"=?");
 		return a+b;
 	}
-
 }

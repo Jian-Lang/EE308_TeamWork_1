@@ -2,7 +2,6 @@ package lab;
 
 import java.math.BigDecimal;
 import java.security.SecureRandom;
-
 public class Multiplication {
 	public static int Integer_Multiplication(){
         SecureRandom sr = new SecureRandom();
@@ -11,6 +10,7 @@ public class Multiplication {
         System.out.println(a+"*"+b+"=?");
         return a*b;
     }
+	
     public static double Float_Multiplication(){
         SecureRandom sr = new SecureRandom();
         double a =sr.nextDouble() + sr.nextInt(99);
@@ -25,5 +25,4 @@ public class Multiplication {
         System.out.println(a+"*"+b+"=?");    
         return re;
     }
-
 }

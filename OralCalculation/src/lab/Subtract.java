@@ -23,5 +23,4 @@ public class Subtract {
         System.out.println(a+"-"+b+"=?");
         return a-b;
 	}
-
 }
