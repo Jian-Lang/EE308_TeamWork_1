@@ -1,0 +1,513 @@
+This Java code specification is based on SUN's standard Java code specification and may be modified to suit the actual needs of our company. Refer to the SUN Java Standard Code Specification for areas not covered in this document. If there is a conflict, the SUN Java standard prevails.
+1. Naming conventions for identifiers
+
+1.1 Overview
+
+The naming of identifiers strives to be uniform, expressive and concise.
+
+1.1.1 Unity
+
+Unity means that we use the same representation for the same concept in the program. For example, we can use supplier or provider, but we can only choose one to use, at least in one Java project. Uniformity is important, and having different representations of the same concept can clutter up the code and make it difficult to understand. Even if a good name is not obtained, it is not too difficult to read as long as the reader only needs to understand it once.
+
+1.1.2 Accurate expression
+
+Projection is to point to, identifier can accurately express the meaning it represents, such as: newSupplier, OrderPaymentGatewayService, etc.; Supplier1, Service2, IDTTS, etc., are not good names. Accuracy is 20% of the meaning, one is correct, two is rich. If you name a variable that represents a vendor as order, you are clearly not expressing it correctly. Similarly, supplier1 is much less meaningful than targetSupplier.
+
+1.1.3 Concise
+
+Brevity means using as few identifiers as possible in a way that is consistent and expressive. If you can't express yourself, don't be concise. Such as: theOrderNameOfTheTargetSupplierWhichIsTransfered is too long, transferedTargetSupplierOrderName is good, but not transTgtSplOrdNm. Don't use abbreviations that omit vowels. Our English is often not good enough to understand strange abbreviations.
+
+1.1.4 Laws of the camel
+
+In Java, except for special cases such as package names and static constants, identifiers are mostly separated by camel's rule, that is, words are not separated by special symbols, but by capitalizing the first letter. For example, supplierName, addNewContract, not supplier_name, add_new_contract.
+
+1.1.5English vs Pinyin
+
+Try to use English words that are easy to understand. If not, ask your teammates for help. If not, use Chinese pinyin to avoid mixing pinyin with English. For example, archive is good, pigeonhole is not good, but guiDang is acceptable.
+
+1.2 The package name
+
+Use lower case letters such as com.xxx.settlment, not com.xxx.settlement
+Don't use characters between words, such as com. XXX. Settlment. Jsfutil, and don't com. XXX. Settlement. Jsf_util
+
+1.3 Class
+
+1.3.1 Uppercase
+
+Capitalize class names, such as SupplierService, PaymentOrderAction; Don't supplierService, paymentOrderAction.
+
+1.3.2 The suffix
+
+Class names often use different suffixes to express additional meaning
+1.4 方法名
+
+Lower case, like addOrder() don't addOrder()
+Verb comes first, such as addOrder(), not orderAdd()
+
+1.5 域（field）名
+
+1.5.1 静态常量
+
+全大写用下划线分割，如
+
+public static find String ORDER_PAID_EVENT = “ORDER_PAID_EVENT”;
+
+1.5.2 枚举
+
+全大写，用下划线分割，如
+
+public enum Events {
+ORDER_PAID,
+ORDER_CREATED
+
+}
+
+1.5.3 Others
+
+Lowercase first letter, camel rule, as in:
+
+public String orderName;
+
+1.6 Local variable name
+
+Parameter and local variable names start with lowercase, camel rule. Try not to conflict with the field, and try to express the meaning of the variable in the method.
+
+2. Code format
+
+Indent source code with space characters, not tabs, 4 Spaces each
+
+2.1 Source code
+
+The source file is encoded in UTF-8 and ends in Unix n-cells.
+2.2 line width
+
+The line width should not exceed 80. The Eclipse standard
+2.3 Importing Packages
+
+Delete unused imports and try not to use whole package imports. In Eclipse, the shortcut CTRL + Shift + O is often used to fix the import.
+
+2.4 class format
+
+2.5 domain format
+Only one field can be declared per line.
+Field declarations are separated by blank lines.
+2.5 Method Format
+
+2.6 Code Block Format
+
+2.6.1 Indent style
+The start of the brace is at the end of the line at the beginning of the code block and is closed at the beginning of the line with the same indentation as the code block, for example:
+
+package com.test;
+
+public class TestStyle extends SomeClass implements AppleInter, BananaInter {
+
+    public static final String THIS_IS_CONST = "CONST VALUE";
+
+    private static void main(String[] args) {
+
+        int localVariable = 0;
+
+    }
+
+    public void compute(String arg) {
+
+        if (arg.length() >  0) {
+
+            System.out.println(arg);
+
+        }
+
+ 
+
+        for (int i = 0; i < 10; i++) {
+
+              System.out.println(arg);
+
+        }
+
+       while (condition) {
+
+       }
+
+      do {
+
+          otherMethod();
+
+      } while (condition);
+
+ 
+
+  switch (i) {
+
+  case 0:
+
+     callFunction();
+
+     break;
+
+  case 1:
+
+     callFunctionb();
+
+     break;
+
+  default:
+
+     break;
+
+  }
+
+ }
+
+}
+
+2.6.2 Use of Spaces
+
+2.6.2.1 Indicates that a space is used for segmentation
+
+Can't:
+
+if       (               a >        b   )            {
+
+    //do something here
+
+};
+
+2.6.2.2 Binary ternary operators are separated by a space
+
+As follows:
+
+a + b = c;
+
+b - d = e;
+
+return a == b ? 1 : 0;
+
+It cannot be:
+
+a+b=c;
+
+b-d=e;
+
+return a==b?1:0;
+
+2.6.2.3 A comma statement is followed by a space if it is not followed by a line break
+As follows:
+
+call(a, b, c);
+
+It cannot be:
+
+call(a,b,c);
+
+2.6.3 Use of blank lines
+Blank lines can express the semantic division of code, the scope of comments, and so on. Blank lines separate different groups of code from similar operations or groups of operations put together as follows:
+order = orderDao.findOrderById(id);
+
+ 
+
+//update properties
+
+order.setUserName(userName);
+
+order.setPrice(456);
+
+order.setStatus(PAID);
+
+orderService.updateTotalAmount(order);
+
+session.saveOrUpdate(order);
+
+The blank line in the above example makes the scope of the comment obvious.
+Two blank lines in a row represent greater semantic segmentation.
+Methods are separated by blank lines
+Fields are separated by empty lines
+More than ten lines of code can be difficult to read if not separated by blank lines
+3. Annotate the specification
+3.1 Comments vs code
+Notes should be less and better, not more and indiscriminate, but not misleading
+The naming is expressive, the structure is clear, and the responsibilities of classes and methods are clear, often requiring little or no comment. Instead, the code is messy and no amount of comments can fix it. So, work on the code itself first.
+Comments that do not express the meaning of your code correctly will only damage the readability of your code.
+Overly detailed comments, comments added to obvious code, and verbose comments are better than nothing.
+Comments need to be synchronized with the code, and too many comments can become a development burden
+Comments are not used to manage code versions. If some code is no longer needed, delete it directly, and SVN will record it. Do not comment it out, otherwise no one will know whether the annotated code should be deleted.
+3.2 Java Doc
+Comments that indicate the meaning and usage of classes, fields, methods, etc., are written in Javadoc style. The Java Doc is for the user of the class, mainly introduces what it is, how to use information and so on. All classes that users need to know are written in Java Doc. Non-java Doc comments are often read by the maintainer of the code, telling the reader why it was written, how to fix it, what problems to look out for, etc. As follows:
+
+/**
+
+* This is a class comment
+
+*/
+
+public class TestClass {
+
+    /**
+
+    * This is a field comment
+
+    */
+
+    public String name;
+
+    /**
+
+    * This is a method comment
+
+    */
+
+    public void call() {
+
+    }
+
+}
+
+3.3 Block-level annotations
+
+3.3.1 Block-level comments, // for single lines, /* for multiple lines.. * /.
+
+3.3.2 The shorter code block uses blank lines to indicate comment scope
+
+3.4 In-line comments
+Inline comments are written at the end of the line with //
+4 Best practices and taboos
+4.1 Make your code look the best every time you save it
+Programmers are lazy. Don't try to optimize the format and structure of the code after I complete the function. Few people will go back and adjust the code after the function is completed.
+
+4.2 Using log instead of system.out.println ()
+Log can set the level, control where the output goes, and make it easy to tell where it is printed in the code, whereas system.out.print does not. Also, system.out. print is slow. So, unless you do it intentionally, log everything. Change system.out. print to log at least before submitting to SVN.
+
+4.3 Do not omit curly braces {} for each if while for statement
+
+
+4.4 use TODO:
+Add //TODO: to your code. Most ides will prompt you to know what you haven't done. Such as:
+if (order.isPaid()) {
+//TODO: Update the order
+}
+4.5 Place a blank statement or comment where space is required to tell the reader that you did it on purpose
+Such as:
+
+if (!exists(order)) {
+
+    ;
+
+}
+
+or：
+
+if (!exists(order)) {
+
+    //nothing to do
+
+}
+
+4.6 Stop making true false judgments about Boolean values
+
+
+
+4.7 Reduce code nesting levels
+Code with more than three levels of nesting is difficult for the average person to understand. The following code is a simple example:
+
+public void demo(int a, int b, int c) {
+
+    if (a > b) {
+
+        if (b > c) {
+
+            doJobA();
+
+        } else if (b < c) {
+
+            doJobB()
+
+        }
+
+    } else {
+
+        if (b > c) {
+
+            if (a < c) {
+
+                doJobC();
+
+            }
+
+        }
+
+    }
+
+}
+
+There are many ways to reduce nesting:
+The merging
+Use return to omit the following else
+Using submethods
+For example, the combination condition becomes:
+
+public void demo(int a, int b, int c) {
+
+    if (a > b && b > c) {
+
+        doJobA();
+
+    }
+
+    if (a > b && c > b) {
+
+        doJobB();
+
+    }
+
+    if (a <= b && c < b && a < c) {
+
+        doJobC();
+
+    }
+
+}
+
+If you use return, it becomes:
+
+public void demo(int a, int b, int c) {
+
+    if (a > b) {
+
+        if (b > c) {
+
+            doJobA();
+
+            return;
+
+        }
+
+        doJobB()
+
+        return;
+
+    }
+
+ 
+
+    if (b > c) {
+
+        if (a < c) {
+
+            doJobC();
+
+        }
+
+    }
+
+}
+
+Using submethods is to extract nested programs and put them into another method.
+4.8 Single responsibilities of the program
+Separation of concerns is a truism of software development. Humans are able to accomplish complex tasks because they are able to break them down into smaller tasks, focusing on fewer things while doing each task. Having a single unit of responsibility allows you to focus on fewer things while writing the program, making it less difficult and less error-prone.
+4.9 Variables are declared, initialized and used together as much as possible
+For example:
+
+int orderNum= getOrderNum();
+
+//do something withou orderNum here
+
+call(orderNum);
+
+The comment in the above example represents a piece of code unrelated to orderNum. The declaration and initialization of orderNum is many lines of code away from where it is used. This is not good.
+
+//do something withou orderNum here
+
+int orderNum= getOrderNum();
+
+call(orderNum);
+
+4.10 Reduce the scope of variables
+If you can use local variables, don't use instance variables. If you can use instance variables, don't use class variables. The shorter the lifetime of a variable, the less likely it is to be misused and the less state of the variable the programmer has to care about at any one time. Instance variables and class variables are not thread-safe by default. Local variables are thread-safe. For example:
+
+public class OrderPayAction{
+
+    private Order order;
+
+ 
+
+    public void doAction() {
+
+        order = orderDao.findOrder();
+
+        doJob1();
+
+        doJob2();
+
+    }
+
+ 
+
+    private void doJob1() {
+
+        doSomething(order);
+
+    }
+
+ 
+
+    private void doJob2() {
+
+        doOtherThing(order);
+
+    }
+
+}
+
+
+
+4.11 Try not to use parameters to bring back the operation results of the method
+
+for example：
+
+public void calculate(Order order) {
+
+    int result = 0;
+
+    //do lots of computing and store it in the result
+
+    order.setResult(result);
+
+}
+
+ 
+
+public void action() {
+
+    order = orderDao.findOrder();
+
+    calculate(order);
+
+    // do lots of things about order
+
+}
+
+The calculate method in the example stores the result through the order object passed in. Instead, write:
+
+public int calculate(Order order) {
+
+    int result = 0;
+
+    //do lots of computing and store it in the result
+
+    return result;
+
+}
+
+public void action() {
+
+    order = orderDao.findOrder();
+
+    order.setResult(calculate(order));
+
+    // do lots of things about order
+
+}
+
+4.12 Type parameters that omit generic classes should not be used unless there is a good reason
+Develop good coding practices, start with me
