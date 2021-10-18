@@ -104,7 +104,7 @@ public class MainClass {
 				case 1:
 					double_res = subtract.Float_Subtract();
 					double_input = sc.nextDouble();
-					if(integer_res == integer_input) {
+					if(double_res == double_input) {
 						score += score_part;
 					}
 					//调用减法
@@ -112,7 +112,7 @@ public class MainClass {
 				case 2:
 					double_res = multiple.Float_Multiplication();
 					double_input = sc.nextDouble();
-					if(integer_res == integer_input) {
+					if(double_res == double_input) {
 						score += score_part;
 					}
 					//调用乘法
